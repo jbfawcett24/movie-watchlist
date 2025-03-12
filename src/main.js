@@ -1,24 +1,14 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+const apiKey = "9178fea20a9c4cc8bce69c3054299fbb";
+const url = 'https://api.themoviedb.org/3/movie/597';
+const options = {
+    method: "GET",
+    headers: {
+        accept: "application/json",
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MTc4ZmVhMjBhOWM0Y2M4YmNlNjljMzA1NDI5OWZiYiIsIm5iZiI6MTc0MTE5MzUwOS42NjQsInN1YiI6IjY3Yzg4MTI1MGM2NWVlOWFiYWU3MThjNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xmOh5H5tMxcBQTVcBiuUoSf5tnYWpOxVXtfAJCeFmrI'
+    }
+}
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
-
-setupCounter(document.querySelector('#counter'))
+fetch(url, options)
+    .then(res => res.json())
+    .then(json => console.log(json))
+    .catch(err => console.error(err));
