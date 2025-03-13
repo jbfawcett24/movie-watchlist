@@ -1,4 +1,4 @@
-#TODO
+# TODO
 
 - [ ] HTML for main page
 - [ ] HTML for playlist viewing
@@ -8,3 +8,5 @@
 - [ ] Get random movie from playlist
 - [ ] Styling for mobile view
 - [ ] Styling for desktop view
+
+### Website Link: https://movie-playlist-site.netlify.app/
