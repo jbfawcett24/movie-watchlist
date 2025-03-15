@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    border-bottom: 3px solid black;
+}
+
+#Title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#logo {
+    max-width: 150px;
+    height: auto;
+    object-fit: contain;
+}
+
+#sideMenu {
+    border-right: 2px solid black;
+    width: 200px;
+    height: 100%;
+}
+
+#playlists {
+    list-style: none;
+    margin-top: 0px;
+    padding-left: 0px;
+}
+
+#playlists li {
+    width: 100%;
+    height: 30px;
+    border-bottom: 2px solid black;
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+#playlists a {
+    padding-top: 10%;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
