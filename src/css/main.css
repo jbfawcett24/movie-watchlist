@@ -5,9 +5,24 @@
 }
 
 header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
     border-bottom: 3px solid black;
+    background: cornflowerblue;
+    display: flex;
 }
 
+.searchBarHome {
+    align-self: center;
+}
+.searchBtn {
+    background-color: white;
+    svg {
+        background: white;
+    }
+}
 #Title {
     display: flex;
     align-items: center;
@@ -19,11 +34,13 @@ header {
     height: auto;
     object-fit: contain;
 }
-
 #sideMenu {
+    position: fixed;
+    top: 92px;
+    left: 0;
+    height: 100vh;
     border-right: 2px solid black;
     width: 200px;
-    height: 100%;
 }
 
 #playlists {
@@ -50,4 +67,25 @@ header {
     align-items: center;
     height: 100%;
     width: 100%;
+}
+#movies {
+    margin-top: 120px;
+    margin-left:200px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+}
+
+.movieContainer {
+    margin: 2%;
+    display: block;
+    height: 300px;
+    width: fit-content;
+    img {
+        height: 90%;
+    }
+    h3 {
+        text-align: center;
+        margin: 0;
+    }
 }

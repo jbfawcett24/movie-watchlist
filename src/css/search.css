@@ -35,7 +35,7 @@
     height: 30px;
     padding: 0;
     border: 1px solid lightgray;
-    background: none;
+    background: white;
     cursor: pointer;
 }
 form {
