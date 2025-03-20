@@ -78,6 +78,7 @@ header {
 }
 
 .movieContainer {
+    cursor: pointer;
     position: relative;
     display: block;
     margin: 2%;
@@ -131,5 +132,4 @@ header {
 .hide {
     display: none;
 }
-
 
