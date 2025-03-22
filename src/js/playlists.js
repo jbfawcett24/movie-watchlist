@@ -1,15 +1,14 @@
-import {movieTemplate, sideTemplate} from './templates.mjs';
-import {url, options} from "./api.mjs"
+import { movieTemplate, sideTemplate } from './templates.mjs';
+import { url, options } from "./api.mjs"
 let selectedPlaylist = 0;
 
 export let playlists = [
     {
-        "name": "playlist 1",
+        "name": "PLAYLIST 1",
         "movieId": [11, 330459]
     }
 ];
-export function init()
-{
+export function init() {
     // uncomment the below line to set an initial playlist
     //localStorage.setItem("playlists", JSON.stringify(playlists));
     playlists = JSON.parse(localStorage.getItem("playlists"));
@@ -18,8 +17,7 @@ export function init()
     setPage();
 }
 
-async function setMovies(e)
-{
+async function setMovies(e) {
     const movieSection = document.querySelector("#movies");
     const id = e.target.id;
     selectedPlaylist = playlists.find(playlist => playlist.name === id.replaceAll("-", " "));
@@ -35,8 +33,7 @@ async function setMovies(e)
         const deleteButton = menu.querySelector(".delete");
         deleteButton.classList.remove("hide");
         document.addEventListener("click", hideDelete);
-        function hideDelete(e)
-        {
+        function hideDelete(e) {
             if (!deleteButton.contains(e.target) && e.target !== event.target) {
                 deleteButton.classList.add("hide");
                 document.removeEventListener("click", hideDelete);
@@ -46,8 +43,7 @@ async function setMovies(e)
     }));
     document.querySelectorAll(".movieContainer").forEach(button => button.addEventListener("click", setURL))
 }
-function setURL(e)
-{
+function setURL(e) {
     console.log(e.target);
     const movie = e.target.closest(".movieContainer");
     const id = movie.id;
@@ -55,7 +51,7 @@ function setURL(e)
     params.append("movieID", id);
     window.location.href = "movie.html?" + params;
 }
-function setPage(){
+function setPage() {
     const sideMenu = document.querySelector('#sideMenu > ul');
     sideMenu.innerHTML = `<li><span id="add">+ Add New Playlist</span></li>`;
     playlists.forEach(playlist => {
@@ -63,8 +59,7 @@ function setPage(){
         document.querySelector(`#${playlist.name.replaceAll(" ", "-")}`).addEventListener("click", setMovies);
     });
 }
-function deleteMovie(e)
-{
+function deleteMovie(e) {
     const movie = e.target.closest('.movieContainer');
     const movieList = document.querySelector("#movies");
     movieList.removeChild(movie);
@@ -88,7 +83,8 @@ function createPlaylist() {
         event.preventDefault();
         playlists.push({
             "name": `${form.querySelector("#newListName").value}`,
-            "movieId": []});
+            "movieId": []
+        });
         setPage();
         document.querySelector("#newList").classList.add("hide");
         console.log(playlists);

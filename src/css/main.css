@@ -21,6 +21,11 @@ header {
     z-index: 1000;
 }
 
+#name {
+    color: #024180;
+    text-shadow: 1px 1px 2px rgba(252, 251, 251, 0.5);
+}
+
 .searchBarHome {
     padding-right: 20px;
 }
@@ -172,7 +177,7 @@ header {
     cursor: pointer;
     font-size: 16px;
     padding: 10px 20px;
-    background-color: #294b2a;
+    background-color: #29374b;
     /* Green background */
     color: white;
     border: none;
@@ -180,7 +185,7 @@ header {
 }
 
 #add:hover {
-    background-color: #0f6312;
+    background-color: #213d63;
     /* Darker green on hover */
 }
 
