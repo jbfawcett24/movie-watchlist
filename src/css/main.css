@@ -97,6 +97,7 @@ header {
 }
 
 .movieContainer {
+    cursor: pointer;
     position: relative;
     display: flex;
     flex-direction: column;
