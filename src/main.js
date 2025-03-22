@@ -11,27 +11,29 @@ const options = {
 let selectedPlaylist = 0;
 
 let playlists = [
-        {
-            "name": "playlist 1",
-            "movieId": [11, 330459]
-        }
-    ];
-function init()
-{
+    {
+        "name": "PLAYLIST 1",
+        "movieId": [11, 330459]
+    }
+];
+
+window.addEventListener("DOMContentLoaded", function () {
+    document.querySelector("#newList").classList.add("hide");
+});
+
+function init() {
     localStorage.setItem("playlists", JSON.stringify(playlists));
     playlists = JSON.parse(localStorage.getItem("playlists"));
     selectedPlaylist = playlists[0];
     setPage();
 }
-function sideTemplate(name)
-{
+function sideTemplate(name) {
     return `<li>
         <span id="${name.replaceAll(" ", "-")}">${name}</span>
    </li>`
 }
-function movieTemplate(movie)
-{
-        return `<section class="movieContainer" id="${movie.id}">
+function movieTemplate(movie) {
+    return `<section class="movieContainer" id="${movie.id}">
                 <img src="${imageBaseUrl + movie.poster_path}" alt="${movie.title} Poster">
                 <h3>${movie.title}</h3>
                 <svg fill="#000000" height="30px" width="30px" viewBox="0 0 25.283 25.283" xml:space="preserve" class="movieMenu">
@@ -47,8 +49,7 @@ function movieTemplate(movie)
                 </div>
             </section>`
 }
-async function setMovies(e)
-{
+async function setMovies(e) {
     const movieSection = document.querySelector("#movies");
     const id = e.target.id;
     selectedPlaylist = playlists.find(playlist => playlist.name === id.replaceAll("-", " "));
@@ -62,8 +63,7 @@ async function setMovies(e)
         const deleteButton = menu.querySelector(".delete");
         deleteButton.classList.remove("hide");
         document.addEventListener("click", hideDelete);
-        function hideDelete(e)
-        {
+        function hideDelete(e) {
             if (!deleteButton.contains(e.target) && e.target !== event.target) {
                 deleteButton.classList.add("hide");
                 document.removeEventListener("click", hideDelete);
@@ -72,7 +72,7 @@ async function setMovies(e)
         deleteButton.addEventListener("click", deleteMovie);
     }));
 }
-function setPage(){
+function setPage() {
     const sideMenu = document.querySelector('#sideMenu > ul');
     sideMenu.innerHTML = `<li><span id="add">+ Add New Playlist</span></li>`;
     playlists.forEach(playlist => {
@@ -80,8 +80,7 @@ function setPage(){
         document.querySelector(`#${playlist.name.replaceAll(" ", "-")}`).addEventListener("click", setMovies);
     });
 }
-function deleteMovie(e)
-{
+function deleteMovie(e) {
     const movie = e.target.closest('.movieContainer');
     const movieList = document.querySelector("#movies");
     movieList.removeChild(movie);
@@ -105,8 +104,9 @@ function createPlaylist() {
     form.addEventListener("submit", event => {
         event.preventDefault();
         playlists.push({
-        "name": `${form.querySelector("#newListName").value}`,
-        "movieId": []});
+            "name": `${form.querySelector("#newListName").value.toUpperCase()}`,
+            "movieId": []
+        });
         setPage();
         document.querySelector("#newList").classList.add("hide");
         localStorage.setItem("playlists", JSON.stringify(playlists));

@@ -8,21 +8,31 @@ header {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    border-bottom: 3px solid black;
-    background: cornflowerblue;
+    width: 100%;
+    border-bottom: 3px solid maroon;
+    background-image: url('../images/movie-film.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: max-content;
+    z-index: 1000;
 }
 
 .searchBarHome {
-    align-self: center;
+    padding-right: 20px;
 }
+
 .searchBtn {
-    background-color: white;
+    background-color: maroon;
+
     svg {
         background: white;
     }
 }
+
 #Title {
     display: flex;
     align-items: center;
@@ -30,17 +40,20 @@ header {
 }
 
 #logo {
-    max-width: 150px;
+    max-width: 175px;
     height: auto;
     object-fit: contain;
 }
+
 #sideMenu {
     position: fixed;
-    top: 92px;
+    top: 109px;
     left: 0;
     height: 100vh;
-    border-right: 2px solid black;
+    border-right: 2px solid maroon;
     width: 200px;
+    padding-right: 10px;
+    background-color: rgb(131, 55, 55);
 }
 
 #playlists {
@@ -52,10 +65,13 @@ header {
 #playlists li {
     width: 100%;
     height: 30px;
-    border-bottom: 2px solid black;
-    padding-bottom: 20px;
+    border-bottom: 3px solid maroon;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
     display: flex;
     align-items: center;
+    color: whitesmoke;
 }
 
 #playlists a {
@@ -68,35 +84,54 @@ header {
     height: 100%;
     width: 100%;
 }
+
 #movies {
-    margin-top:100px;
-    margin-left:200px;
+    margin-top: 100px;
+    margin-left: 200px;
     position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: left;
+    overflow: auto;
+    z-index: 1;
 }
 
 .movieContainer {
     position: relative;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: 2%;
-    height: 300px;
-    width: fit-content;
+    min-height: 300px;
+    width: 12vmax;
+
     a {
         text-decoration: none;
+        width: 100%;
+        display: block;
     }
+
     img {
         height: 90%;
+        display: block;
+        width: 100%;
     }
+
     h3 {
         text-align: center;
         margin: 0;
         color: black;
+        width: 100%;
+        padding-left: 5px;
+        white-space: normal;
+        overflow-wrap: normal;
     }
+
     border: solid 1px lightgray;
     background-color: white;
+    box-sizing: border-box;
 }
+
 .movieMenu {
     fill: white;
     opacity: 0;
@@ -105,9 +140,11 @@ header {
     right: 5%;
     transition: all 0.2s ease-in-out;
 }
+
 .movieMenu:hover {
     fill: #ca0000;
 }
+
 .movieContainer:hover .movieMenu {
     opacity: 100%;
 }
@@ -122,14 +159,62 @@ header {
     width: fit-content;
     background-color: #ca0000;
     padding: 1%;
+
     p {
         text-align: center;
         margin: 0;
         color: white;
     }
 }
+
+#add {
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #294b2a;
+    /* Green background */
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+#add:hover {
+    background-color: #0f6312;
+    /* Darker green on hover */
+}
+
+/* The form container (#newList) */
+#newList {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(131, 55, 55);
+    color: whitesmoke;
+    border: 1px solid maroon;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    /* Makes sure it appears above other elements */
+    width: 300px;
+    text-align: center;
+}
+
+/* The input and label inside the form */
+#newListForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#newListName {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
 .hide {
     display: none;
 }
-
-
