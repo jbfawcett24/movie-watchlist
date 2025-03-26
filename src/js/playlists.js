@@ -11,12 +11,15 @@ export let playlists = [
 export function init() {
     // uncomment the below line to set an initial playlist
     //localStorage.setItem("playlists", JSON.stringify(playlists));
-    playlists = JSON.parse(localStorage.getItem("playlists"));
+    playlists = getPlaylists();
     document.querySelector("#add").addEventListener("click", createPlaylist);
     selectedPlaylist = playlists[0];
     setPage();
 }
-
+export function getPlaylists()
+{
+    return JSON.parse(localStorage.getItem("playlists"));
+}
 async function setMovies(e) {
     const movieSection = document.querySelector("#movies");
     const id = e.target.id;
@@ -44,10 +47,15 @@ async function setMovies(e) {
     document.querySelectorAll(".movieContainer").forEach(button => button.addEventListener("click", setURL))
 }
 function setURL(e) {
-    console.log(e.target);
+    if (e.target.closest(".movieMenu")) {
+        return;
+    }
+
     const movie = e.target.closest(".movieContainer");
+    if (!movie) return; // Prevent errors
+
     const id = movie.id;
-    let params = new URLSearchParams()
+    let params = new URLSearchParams();
     params.append("movieID", id);
     window.location.href = "movie.html?" + params;
 }
@@ -58,6 +66,7 @@ function setPage() {
         sideMenu.insertAdjacentHTML('afterbegin', sideTemplate(playlist.name));
         document.querySelector(`#${playlist.name.replaceAll(" ", "-")}`).addEventListener("click", setMovies);
     });
+    document.querySelector("#add").addEventListener("click", createPlaylist);
 }
 function deleteMovie(e) {
     const movie = e.target.closest('.movieContainer');
@@ -77,6 +86,7 @@ function updatePlaylists() {
 }
 
 function createPlaylist() {
+    console.log("clicked");
     document.querySelector("#newList").classList.remove("hide");
     const form = document.querySelector("#newListForm");
     form.addEventListener("submit", event => {
