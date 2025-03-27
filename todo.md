@@ -13,7 +13,8 @@
 - [ ] No repeated playlist names
 - [ ] Form validation
 - [ ] Export/Import/Share playlist
-- [ ] Check that watch locations exist
+- [x] Check that watch locations exist
 - [ ] Delete Playlists
 - [ ] Filters for movies
+- [x] null playlist check
 ### Website Link: https://movie-playlist-site.netlify.app/

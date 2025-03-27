@@ -20,6 +20,11 @@ export async function getMovieInfo(id)
 export async function getWatchData(id)
 {
     const response = await fetch(url + id + watchURL, options);
-    const watch = await response.json();
-    return watch.results.US;
+    if(response.ok)
+    {
+        const watch = await response.json();
+        return watch.results.US;
+    } else {
+        return "";
+    }
 }

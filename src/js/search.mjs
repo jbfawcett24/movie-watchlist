@@ -54,9 +54,13 @@ function addToPlaylist(e) {
     console.log(movieId);
     playlistSelector.querySelectorAll("li").forEach((li) => {li.addEventListener("click", (event) => {
         let selectedPlaylist = playlists.findIndex(playlist => playlist.name === event.target.id);
-        playlists[selectedPlaylist].movieId.push(movieId);
-        localStorage.setItem("playlists", JSON.stringify(playlists));
-        console.log(selectedPlaylist);
+        console.log(playlists[selectedPlaylist].movieId.includes(movieId));
+        if(!playlists[selectedPlaylist].movieId.includes(movieId))
+        {
+            playlists[selectedPlaylist].movieId.push(movieId);
+            localStorage.setItem("playlists", JSON.stringify(playlists));
+            console.log(selectedPlaylist);
+        }
     })})
     setTimeout(() => {
         document.addEventListener("click", handleOutsideClick);

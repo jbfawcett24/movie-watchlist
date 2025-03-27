@@ -21,17 +21,22 @@ async function setMovieInfo()
     const banner = document.querySelector("#movieBanner");
     const title = document.querySelector("#movieTitle");
     const description = document.querySelector("#movieDescription");
-    banner.src = imageBaseUrl + "/" +movie.backdrop_path;
+    banner.src = movie.backdrop_path ? imageBaseUrl + "/" + movie.backdrop_path : "../images/no-banner.png";
     title.innerText = movie.title + " (" + movie.release_date.split("-")[0] + ")";
-    description.innerText = movie.overview;
+    description.innerText = movie.overview ? movie.overview : "No overview found.";
 }
 async function setWatchInfo()
 {
     const watchData = await getWatchData(movieID);
     console.log(watchData);
-    document.querySelector("#buy").innerHTML = watchData.buy.map(watchTemplate);
-    document.querySelector("#rent").innerHTML = watchData.rent.map(watchTemplate);
-    document.querySelector("#flatRate").innerHTML = watchData.flatrate.map(watchTemplate);
+    if(watchData)
+    {
+        document.querySelector("#buy").innerHTML = watchData.buy ? watchData.buy.map(watchTemplate) : "No source found.";
+        document.querySelector("#rent").innerHTML = watchData.rent ? watchData.rent.map(watchTemplate) : "No source found.";
+        document.querySelector("#flatRate").innerHTML = watchData.flatrate ? watchData.flatrate.map(watchTemplate) : "No source found.";
+    } else { 
+        document.querySelector("#watch").innerHTML = `<h2>Where to watch</h2> No source found.`;
+    }
 }
 function init()
 {

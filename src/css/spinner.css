@@ -1,0 +1,54 @@
+.picture {
+    position: absolute;
+    aspect-ratio: 2/3;
+    background-color: lightcoral;
+    height: 200px;
+    border: 2px solid black;
+    transition: all 0.5s linear;
+    img {
+        height: inherit;
+    }
+}
+
+#spinner {
+    margin: auto;
+    aspect-ratio: 1/1;
+    height: 100vh;
+}
+
+#powerbutton {
+    position: fixed;
+    aspect-ratio: 1/1;
+    width: 100px;
+    border: 2px solid darkred;
+    border-radius: 50%;
+    background-color: red;
+    top: calc(50% - 50px);
+    left: calc(50% - 50px);
+    text-align: center;
+    display: flex;
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+    p {
+        margin: auto;
+    }
+}
+#powerbutton:hover {
+    background-color: darkred;
+}
+#powerScale{
+    position: fixed;
+    top: calc(50% - 100px);
+    left: 10%;
+    div {
+        transition: 0.1s linear;
+    }
+    height: 200px;
+    width: 50px;
+    border: 1px solid black;
+}
+#full {
+    background-color: limegreen;
+    height: 50%;
+}

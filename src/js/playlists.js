@@ -1,6 +1,6 @@
 import { movieTemplate, sideTemplate } from './templates.mjs';
 import { url, options } from "./api.mjs"
-let selectedPlaylist = 0;
+let selectedPlaylist;
 
 export let playlists = [
     {
@@ -13,15 +13,15 @@ export function init() {
     //localStorage.setItem("playlists", JSON.stringify(playlists));
     playlists = getPlaylists();
     document.querySelector("#add").addEventListener("click", createPlaylist);
-    selectedPlaylist = playlists[0];
     setPage();
 }
 export function getPlaylists()
 {
-    return JSON.parse(localStorage.getItem("playlists"));
+    return localStorage.getItem("playlists") ? JSON.parse(localStorage.getItem("playlists")) : [];
 }
 async function setMovies(e) {
     const movieSection = document.querySelector("#movies");
+    movieSection.innerHTML = "Loading...";
     const id = e.target.id;
     selectedPlaylist = playlists.find(playlist => playlist.name === id.replaceAll("-", " "));
     console.log(selectedPlaylist);
@@ -47,7 +47,7 @@ async function setMovies(e) {
     document.querySelectorAll(".movieContainer").forEach(button => button.addEventListener("click", setURL))
 }
 function setURL(e) {
-    if (e.target.closest(".movieMenu")) {
+    if (e.target.closest(".movieMenu") || e.target.closest(".delete")) {
         return;
     }
 
@@ -101,5 +101,18 @@ function createPlaylist() {
         localStorage.setItem("playlists", JSON.stringify(playlists));
     })
 }
+
+document.querySelector(".random").addEventListener("click",spinner);
+function spinner(){
+    let params = new URLSearchParams();
+    console.log(selectedPlaylist);
+    if(selectedPlaylist)
+    {
+        console.log("true");
+        params.append("playlist", playlists.findIndex(playlist => playlist === selectedPlaylist).toString());
+        window.location.href = "spinner.html?" + params;
+    }
+}
+
 init();
 
