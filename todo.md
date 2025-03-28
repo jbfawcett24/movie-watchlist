@@ -1,4 +1,6 @@
 # TODO
+#### General
+- [ ] Close button for modals
 #### Stylings
 - [ ] Search Page
 - [ ] Movie Page
@@ -9,7 +11,7 @@
 #### JS 
 - [x] Fix delete Button
 - [ ] random Movie Selector
-- [ ] Make sure that the same movie cant be added twice
+- [x] Make sure that the same movie cant be added twice
 - [ ] No repeated playlist names
 - [ ] Form validation
 - [ ] Export/Import/Share playlist

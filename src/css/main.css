@@ -190,7 +190,7 @@ header {
 }
 
 /* The form container (#newList) */
-#newList {
+.modal {
     position: fixed;
     top: 50%;
     left: 50%;

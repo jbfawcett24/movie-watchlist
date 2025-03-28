@@ -2,12 +2,7 @@ import { movieTemplate, sideTemplate } from './templates.mjs';
 import { url, options } from "./api.mjs"
 let selectedPlaylist;
 
-export let playlists = [
-    {
-        "name": "PLAYLIST 1",
-        "movieId": [11, 330459]
-    }
-];
+@
 export function init() {
     // uncomment the below line to set an initial playlist
     //localStorage.setItem("playlists", JSON.stringify(playlists));
@@ -114,5 +109,16 @@ function spinner(){
     }
 }
 
+function share()
+{
+    const params = new URLSearchParams();
+    params.append("name", selectedPlaylist.name);
+    params.append("movieID", selectedPlaylist.movieId.join(","));
+    console.log(window.location);
+    const shareUrl = window.location + "share.html?" + params;
+    console.log(shareUrl);
+}
+
+document.querySelector(".share").addEventListener("click", share);
 init();
 

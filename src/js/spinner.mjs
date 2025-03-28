@@ -1,9 +1,9 @@
 import {url, options, imageBaseUrl} from "./api.mjs"
 
 const spinner = document.querySelector('#spinner');
-console.log(spinner.style.height);
+//console.log(spinner.style.height);
 const middle = [spinner.offsetTop + (spinner.offsetHeight/2),spinner.offsetLeft + (spinner.offsetHeight/2)];
-console.log(middle[0], middle[1]);
+//console.log(middle[0], middle[1]);
 let numPictures = 15;
 let theta = 0;
 let thetaOffset = 2*Math.PI;
@@ -13,7 +13,7 @@ let mouseDown = false;
 
 function createPictures()
 {
-    console.log(thetaOffset);
+    //console.log(thetaOffset);
     for(let i = 0; i < numPictures; i++) {
         spinner.insertAdjacentHTML("beforeend", `<div class="picture" id="${i}"><img src="${images[i]}" alt="movie poster"></div>`);
     }
@@ -36,9 +36,11 @@ function setPicturePosition()
 
 function selectWinner()
 {
+    console.log("selecting winner");
     let winningId = 0;
     document.querySelectorAll(".picture").forEach((element) => {
-        if(element.style.top >  document.getElementById(winningId).style.top)
+        console.log(`comparing ${element.id} at ${element.style.top} to ${winningId} at ${document.getElementById(winningId).style.top}`);
+        if(parseInt(element.style.top) >  parseInt(document.getElementById(winningId).style.top))
         {
             winningId = element.id;
         }   
@@ -46,17 +48,17 @@ function selectWinner()
     const winner = document.getElementById(winningId);
     winner.style.height = (window.innerHeight*0.99).toString() + "px";
     winner.style.top = "0";
-    console.log(winner.offsetWidth);
+    //console.log(winner.offsetWidth);
     winner.style.left = (window.innerWidth/2 - ((window.innerHeight*0.99)*(2/6)))+ "px";
     winner.style.zIndex = "1000";
-    console.log(winningId);
+    //console.log(winningId);
     
 }
 function movePictures() {
     return new Promise((resolve) => {
         function step() {
             if (time > 0) {
-                theta += 0.4;
+                theta += time/5;
                 setPicturePosition();
                 time -= 0.2;
                 setTimeout(step, 200);
@@ -83,7 +85,7 @@ function powerUp()
     if(time<10 && mouseDown)
     {
         time+=0.5;
-        console.log(time);
+        //console.log(time);
         document.querySelector("#full").style.height = (time*10) + "%";
         setTimeout(powerUp, 100);
     }
@@ -100,7 +102,7 @@ async function init()
     const selected = params.get("playlist");
     const playlists = JSON.parse(localStorage.getItem("playlists"));
     const selectedPlaylist = playlists[selected];
-    console.log(selectedPlaylist);
+    //console.log(selectedPlaylist);
     images = await Promise.all(selectedPlaylist.movieId.map(id => getImage(id)));
     numPictures = images.length;
     thetaOffset = (2*Math.PI) / numPictures;
