@@ -224,3 +224,7 @@ header {
 .hide {
     display: none;
 }
+
+#share {
+    width: 500px;
+}

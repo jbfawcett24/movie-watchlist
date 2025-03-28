@@ -2,7 +2,7 @@ import { movieTemplate, sideTemplate } from './templates.mjs';
 import { url, options } from "./api.mjs"
 let selectedPlaylist;
 
-@
+
 export function init() {
     // uncomment the below line to set an initial playlist
     //localStorage.setItem("playlists", JSON.stringify(playlists));
@@ -116,6 +116,8 @@ function share()
     params.append("movieID", selectedPlaylist.movieId.join(","));
     console.log(window.location);
     const shareUrl = window.location + "share.html?" + params;
+    document.querySelector("#share").innerText = shareUrl;
+    document.querySelector("#share").classList.remove("hide");
     console.log(shareUrl);
 }
 
