@@ -1,6 +1,7 @@
 import { movieTemplate, sideTemplate } from './templates.mjs';
 import { url, options } from "./api.mjs"
 let selectedPlaylist;
+let playlists = [];
 
 
 export function init() {
@@ -10,22 +11,29 @@ export function init() {
     document.querySelector("#add").addEventListener("click", createPlaylist);
     setPage();
 }
-export function getPlaylists()
-{
+export function getPlaylists() {
     return localStorage.getItem("playlists") ? JSON.parse(localStorage.getItem("playlists")) : [];
 }
 async function setMovies(e) {
     const movieSection = document.querySelector("#movies");
     movieSection.innerHTML = "Loading...";
     const id = e.target.id;
+    document.querySelectorAll("#playlists li").forEach(item => {
+        item.classList.remove("selected");
+    });
+    e.target.closest("li").classList.add("selected");
     selectedPlaylist = playlists.find(playlist => playlist.name === id.replaceAll("-", " "));
     console.log(selectedPlaylist);
     const moviePromises = selectedPlaylist.movieId.map(movie => fetch(url + movie, options).then(res => res.json()));
     const movies = await Promise.all(moviePromises);
     console.log(movies);
     const html = movies.map(movieTemplate);
-    document.querySelector("#name").innerText = selectedPlaylist.name;
-    movieSection.innerHTML = html.join("");
+    const playlistTitle = document.createElement("h1");
+    playlistTitle.className = "playlistName";
+    playlistTitle.innerText = selectedPlaylist.name;
+    movieSection.innerHTML = "";
+    movieSection.appendChild(playlistTitle);
+    movieSection.innerHTML += html.join("");
     document.querySelectorAll(".movieMenu").forEach(button => button.addEventListener("click", event => {
         const menu = event.target.closest(".movieContainer");
         const deleteButton = menu.querySelector(".delete");
@@ -41,6 +49,7 @@ async function setMovies(e) {
     }));
     document.querySelectorAll(".movieContainer").forEach(button => button.addEventListener("click", setURL))
 }
+
 function setURL(e) {
     if (e.target.closest(".movieMenu") || e.target.closest(".delete")) {
         return;
@@ -54,6 +63,7 @@ function setURL(e) {
     params.append("movieID", id);
     window.location.href = "movie.html?" + params;
 }
+
 function setPage() {
     const sideMenu = document.querySelector('#sideMenu > ul');
     sideMenu.innerHTML = `<li><span id="add">+ Add New Playlist</span></li>`;
@@ -63,6 +73,7 @@ function setPage() {
     });
     document.querySelector("#add").addEventListener("click", createPlaylist);
 }
+
 function deleteMovie(e) {
     const movie = e.target.closest('.movieContainer');
     const movieList = document.querySelector("#movies");
@@ -74,6 +85,7 @@ function deleteMovie(e) {
     selectedPlaylist.movieId.splice(index, 1);
     updatePlaylists();
 }
+
 function updatePlaylists() {
     const index = playlists.findIndex(playlist => playlist.name === selectedPlaylist.name);
     playlists[index] = selectedPlaylist;
@@ -87,7 +99,7 @@ function createPlaylist() {
     form.addEventListener("submit", event => {
         event.preventDefault();
         playlists.push({
-            "name": `${form.querySelector("#newListName").value}`,
+            "name": `${form.querySelector("#newListName").value.toUpperCase()}`,
             "movieId": []
         });
         setPage();
@@ -97,20 +109,18 @@ function createPlaylist() {
     })
 }
 
-document.querySelector(".random").addEventListener("click",spinner);
-function spinner(){
+document.querySelector(".random").addEventListener("click", spinner);
+function spinner() {
     let params = new URLSearchParams();
     console.log(selectedPlaylist);
-    if(selectedPlaylist)
-    {
+    if (selectedPlaylist) {
         console.log("true");
         params.append("playlist", playlists.findIndex(playlist => playlist === selectedPlaylist).toString());
         window.location.href = "spinner.html?" + params;
     }
 }
 
-function share()
-{
+function share() {
     const params = new URLSearchParams();
     params.append("name", selectedPlaylist.name);
     params.append("movieID", selectedPlaylist.movieId.join(","));

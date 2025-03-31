@@ -10,7 +10,7 @@ header {
     left: 0;
     width: 100%;
     border-bottom: 3px solid maroon;
-    background-image: url('../images/movie-film.jpg');
+    background-image: url('../images/movie-film.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -21,9 +21,15 @@ header {
     z-index: 1000;
 }
 
-#name {
-    color: #024180;
-    text-shadow: 1px 1px 2px rgba(252, 251, 251, 0.5);
+.playlistName {
+    color: rgb(25, 75, 126);
+    text-shadow: 2px 2px 2px rgba(25, 75, 126, 0.8);
+    font-weight: bold;
+    font-size: 35px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    width: 100%;
+    text-decoration: underline;
 }
 
 .searchBarHome {
@@ -79,6 +85,12 @@ header {
     color: whitesmoke;
 }
 
+#playlists li.selected {
+    background-color: rgb(164, 89, 89);
+    font-weight: bold;
+    color: white;
+}
+
 #playlists a {
     padding-top: 10%;
     text-decoration: none;
@@ -91,14 +103,17 @@ header {
 }
 
 #movies {
-    margin-top: 100px;
+    margin-top: 90px;
     margin-left: 200px;
     position: relative;
     display: flex;
+    align-items: center;
+    text-align: center;
     flex-wrap: wrap;
-    justify-content: left;
+    justify-content: center;
     overflow: auto;
     z-index: 1;
+    width: 100%;
 }
 
 .movieContainer {
