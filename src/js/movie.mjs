@@ -31,9 +31,9 @@ async function setWatchInfo()
     console.log(watchData);
     if(watchData)
     {
-        document.querySelector("#buy").innerHTML = watchData.buy ? watchData.buy.map(watchTemplate) : "No source found.";
-        document.querySelector("#rent").innerHTML = watchData.rent ? watchData.rent.map(watchTemplate) : "No source found.";
-        document.querySelector("#flatRate").innerHTML = watchData.flatrate ? watchData.flatrate.map(watchTemplate) : "No source found.";
+        document.querySelector("#buy").innerHTML = watchData.buy ? watchData.buy.map(watchTemplate).join("") : "No source found.";
+        document.querySelector("#rent").innerHTML = watchData.rent ? watchData.rent.map(watchTemplate).join("") : "No source found.";
+        document.querySelector("#flatRate").innerHTML = watchData.flatrate ? watchData.flatrate.map(watchTemplate).join("") : "No source found.";
     } else { 
         document.querySelector("#watch").innerHTML = `<h2>Where to watch</h2> No source found.`;
     }

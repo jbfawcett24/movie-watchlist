@@ -241,5 +241,5 @@ header {
 }
 
 #share {
-    width: 500px;
+    width: fit-content;
 }
