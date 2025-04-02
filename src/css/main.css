@@ -243,3 +243,25 @@ header {
 #share {
     width: fit-content;
 }
+
+.close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 1%;
+    cursor: pointer;
+}
+
+.deletePlaylist {
+    opacity: 0;
+    position: absolute;
+    top: -0.5%;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    transition: opacity 0.3s ease;
+}
+
+.deletePlaylist:hover {
+    opacity: 1;
+}

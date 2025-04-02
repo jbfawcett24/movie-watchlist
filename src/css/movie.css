@@ -18,6 +18,7 @@ main {
 }
 
 #movieInfo {
+    height: 100vh;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: repeat(4, 1fr);
@@ -47,6 +48,7 @@ main {
     margin: 1%;
     background-color: rgba(245, 245, 245, 0.54);
     width: 98vw;
+    height: max-content;
     h2 {
         margin: 1% 1% 0;
         font-size: 2em;
@@ -76,5 +78,7 @@ main {
             justify-content: space-between;
         }
     }
-    
+    ul:last-of-type {
+        margin-bottom: 1%;
+    }
 }
