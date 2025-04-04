@@ -52,3 +52,6 @@
     background-color: limegreen;
     height: 50%;
 }
+.hide {
+    display: none;
+}

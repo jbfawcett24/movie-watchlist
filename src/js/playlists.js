@@ -5,10 +5,7 @@ let playlists = [];
 
 
 export function init() {
-    // uncomment the below line to set an initial playlist
-    //localStorage.setItem("playlists", JSON.stringify(playlists));
     playlists = getPlaylists();
-    document.querySelector("#add").addEventListener("click", createPlaylist);
     setPage();
 }
 export function getPlaylists() {
@@ -17,7 +14,7 @@ export function getPlaylists() {
 async function setMovies(e) {
     const movieSection = document.querySelector("#movies");
     movieSection.innerHTML = "Loading...";
-    const id = e.target.id;
+    const id = e.target.closest("span").id;
     document.querySelectorAll("#playlists li").forEach(item => {
         item.classList.remove("selected");
     });
@@ -65,11 +62,15 @@ function setURL(e) {
 function setPage() {
     const sideMenu = document.querySelector('#sideMenu > ul');
     sideMenu.innerHTML = `<li><span id="add">+ Add New Playlist</span></li>`;
-    playlists.forEach(playlist => {
-        sideMenu.insertAdjacentHTML('afterbegin', sideTemplate(playlist.name));
-        document.querySelector(`#${playlist.name.replaceAll(" ", "-")}`).addEventListener("click", setMovies);
-    });
+    if(playlists.length > 0)
+    {
+        playlists.forEach(playlist => {
+            sideMenu.insertAdjacentHTML('afterbegin', sideTemplate(playlist.name));
+            document.querySelector(`#${playlist.name.replaceAll(" ", "-")}`).addEventListener("click", setMovies);
+        });
+    }
     document.querySelector("#add").addEventListener("click", createPlaylist);
+    document.querySelectorAll(".deletePlaylist").forEach(button => button.addEventListener("click", deletePlaylist));
 }
 
 function deleteMovie(e) {
@@ -96,15 +97,30 @@ function createPlaylist() {
     const form = document.querySelector("#newListForm");
     form.addEventListener("submit", event => {
         event.preventDefault();
-        playlists.push({
-            "name": `${form.querySelector("#newListName").value.toUpperCase()}`,
-            "movieId": []
-        });
-        setPage();
-        document.querySelector("#newList").classList.add("hide");
-        console.log(playlists);
-        localStorage.setItem("playlists", JSON.stringify(playlists));
-    })
+        if(playlists.length > 0) {
+            if (!playlists.some(playlist => playlist.name.toLowerCase() === form.querySelector("#newListName").value.toLowerCase())) {
+                playlists.push({
+                    "name": `${form.querySelector("#newListName").value}`,
+                    "movieId": []
+                });
+                setPage();
+                document.querySelector("#newList").classList.add("hide");
+                console.log(playlists);
+                localStorage.setItem("playlists", JSON.stringify(playlists));
+            } else {
+                document.querySelector(".error").classList.remove("hide");
+            }
+        } else {
+            playlists = [{
+                "name": `${form.querySelector("#newListName").value}`,
+                "movieId": []
+            }];
+            setPage();
+            document.querySelector("#newList").classList.add("hide");
+            console.log(playlists);
+            localStorage.setItem("playlists", JSON.stringify(playlists));
+        }
+    });
 }
 
 document.querySelector(".random").addEventListener("click", spinner);
@@ -122,13 +138,38 @@ function share() {
     const params = new URLSearchParams();
     params.append("name", selectedPlaylist.name);
     params.append("movieID", selectedPlaylist.movieId.join(","));
-    console.log(window.location);
-    const shareUrl = window.location + "share.html?" + params;
-    document.querySelector("#share").innerText = shareUrl;
+    console.log(window.location.host);
+    const shareUrl = window.location.protocol + "//" + window.location.host +"/" + "share.html?" + params;
+    document.querySelector("#shareLink").innerText = shareUrl;
     document.querySelector("#share").classList.remove("hide");
     console.log(shareUrl);
 }
 
+function deletePlaylist(e) {
+    const deleteID = e.target.closest("span").id;
+    console.log(deleteID);
+    document.querySelector("#delete").classList.remove("hide");
+    document.querySelector("#yes").addEventListener("click", function()
+    {
+        const index = playlists.findIndex(playlist => playlist.name === deleteID.replaceAll("-", " "));
+        playlists.splice(index, 1);
+        localStorage.setItem("playlists", JSON.stringify(playlists));
+        setPage();
+        
+        document.querySelector("#delete").classList.add("hide");
+    });
+    document.querySelector("#no").addEventListener("click", function() {
+        document.querySelector("#delete").classList.add("hide");
+    });
+}
+
 document.querySelector(".share").addEventListener("click", share);
+document.querySelectorAll(".close").forEach(button =>
+    button.addEventListener("click", event => {
+        console.log("close"); // Debugging line
+        event.target.closest(".modal").classList.add("hide");
+    })
+);
+
 init();
 

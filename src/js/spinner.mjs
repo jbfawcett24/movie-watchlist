@@ -8,14 +8,14 @@ let numPictures = 15;
 let theta = 0;
 let thetaOffset = 2*Math.PI;
 let time = 0;
-let images;
+let images = [{}];
 let mouseDown = false;
 
 function createPictures()
 {
     //console.log(thetaOffset);
     for(let i = 0; i < numPictures; i++) {
-        spinner.insertAdjacentHTML("beforeend", `<div class="picture" id="${i}"><img src="${images[i]}" alt="movie poster"></div>`);
+        spinner.insertAdjacentHTML("beforeend", `<div class="picture" id="${i}"><img src="${images[i].image}" alt="movie poster"></div>`);
     }
     setPicturePosition();
 }
@@ -51,6 +51,8 @@ function selectWinner()
     //console.log(winner.offsetWidth);
     winner.style.left = (window.innerWidth/2 - ((window.innerHeight*0.99)*(2/6)))+ "px";
     winner.style.zIndex = "1000";
+    document.querySelector(".winner").innerText = images[winningId].title;
+    document.querySelector(".winner").classList.remove("hide");
     //console.log(winningId);
     
 }
@@ -75,7 +77,10 @@ async function getImage(id)
     if(response.ok)
     {
         const data = await response.json();
-        return data.poster_path ? `${imageBaseUrl}/${data.poster_path}` : "../images/no-poster.png";
+        return {
+            title: data.title,
+            image: data.poster_path ? `${imageBaseUrl}/${data.poster_path}` : "../images/no-poster.png"
+        };
     }
 }
 function powerUp()

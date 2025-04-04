@@ -21,6 +21,7 @@ async function setMovieInfo()
     const banner = document.querySelector("#movieBanner");
     const title = document.querySelector("#movieTitle");
     const description = document.querySelector("#movieDescription");
+    document.title = movie.title;
     banner.src = movie.backdrop_path ? imageBaseUrl + "/" + movie.backdrop_path : "../images/no-banner.png";
     title.innerText = movie.title + " (" + movie.release_date.split("-")[0] + ")";
     description.innerText = movie.overview ? movie.overview : "No overview found.";
