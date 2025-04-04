@@ -28,11 +28,9 @@ async function setMovies(e) {
     const movies = await Promise.all(moviePromises);
     console.log(movies);
     const html = movies.map(movieTemplate);
-    const playlistTitle = document.createElement("h1");
-    playlistTitle.className = "playlistName";
+    const playlistTitle = document.querySelector(".playlistName");
     playlistTitle.innerText = selectedPlaylist.name;
     movieSection.innerHTML = "";
-    movieSection.appendChild(playlistTitle);
     movieSection.innerHTML += html.join("");
     document.querySelectorAll(".movieMenu").forEach(button => button.addEventListener("click", event => {
         const menu = event.target.closest(".movieContainer");
