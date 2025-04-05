@@ -6,10 +6,11 @@ let playlists = [];
 
 export function init() {
     playlists = getPlaylists();
+    localStorage.setItem("playlists", JSON.stringify(playlists));
     setPage();
 }
 export function getPlaylists() {
-    return localStorage.getItem("playlists") ? JSON.parse(localStorage.getItem("playlists")) : [];
+    return localStorage.getItem("playlists") ? JSON.parse(localStorage.getItem("playlists")) : [{name: "Favorites", movieId: []}];
 }
 async function setMovies(e) {
     const movieSection = document.querySelector("#movies");
