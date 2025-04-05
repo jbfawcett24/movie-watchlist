@@ -5,9 +5,11 @@
 }
 
 header {
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     width: 100%;
     box-shadow: 1px 1px 4px rgba(1, 1, 1, 0.8);
     background-image: url('../images/movie-film.webp');
@@ -17,8 +19,12 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: max-content;
+    height: 106px;
     z-index: 1000;
+}
+
+body {
+    margin: 0;
 }
 
 .playlistName {
@@ -114,8 +120,10 @@ header {
 }
 
 #movies {
+    position: fixed;
+    width: calc(100% - 200px);
+    top: 107px;
     margin-left: 200px;
-    /*margin-right: -7px;*/
     display: flex;
     align-items: flex-start;
     text-align: center;
@@ -127,13 +135,13 @@ header {
     background-position: bottom;
     background-repeat: no-repeat;
     background-size: cover;
-    width: 177vh;
     height: 100vh;
+    padding-top: 50px;
 }
 
 .movieContainer {
     cursor: pointer;
-    position: static;
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -187,8 +195,8 @@ header {
 .delete {
     border: solid 2px black;
     border-radius: 5px;
-    display: block;
-    position: absolute;
+    display: flex;
+    position: relative;
     top: 13%;
     right: -15%;
     width: fit-content;

@@ -62,8 +62,7 @@ function setURL(e) {
 function setPage() {
     const sideMenu = document.querySelector('#sideMenu > ul');
     sideMenu.innerHTML = `<li><span id="add">+ Add New Playlist</span></li>`;
-    if(playlists.length > 0)
-    {
+    if (playlists.length > 0) {
         playlists.forEach(playlist => {
             sideMenu.insertAdjacentHTML('afterbegin', sideTemplate(playlist.name));
             document.querySelector(`#${playlist.name.replaceAll(" ", "-")}`).addEventListener("click", setMovies);
@@ -97,7 +96,7 @@ function createPlaylist() {
     const form = document.querySelector("#newListForm");
     form.addEventListener("submit", event => {
         event.preventDefault();
-        if(playlists.length > 0) {
+        if (playlists.length > 0) {
             if (!playlists.some(playlist => playlist.name.toLowerCase() === form.querySelector("#newListName").value.toLowerCase())) {
                 playlists.push({
                     "name": `${form.querySelector("#newListName").value}`,
@@ -139,7 +138,7 @@ function share() {
     params.append("name", selectedPlaylist.name);
     params.append("movieID", selectedPlaylist.movieId.join(","));
     console.log(window.location.host);
-    const shareUrl = window.location.protocol + "//" + window.location.host +"/" + "share.html?" + params;
+    const shareUrl = window.location.protocol + "//" + window.location.host + "/" + "share.html?" + params;
     document.querySelector("#shareLink").innerText = shareUrl;
     document.querySelector("#share").classList.remove("hide");
     console.log(shareUrl);
@@ -149,16 +148,15 @@ function deletePlaylist(e) {
     const deleteID = e.target.closest("span").id;
     console.log(deleteID);
     document.querySelector("#delete").classList.remove("hide");
-    document.querySelector("#yes").addEventListener("click", function()
-    {
+    document.querySelector("#yes").addEventListener("click", function () {
         const index = playlists.findIndex(playlist => playlist.name === deleteID.replaceAll("-", " "));
         playlists.splice(index, 1);
         localStorage.setItem("playlists", JSON.stringify(playlists));
         setPage();
-        
+
         document.querySelector("#delete").classList.add("hide");
     });
-    document.querySelector("#no").addEventListener("click", function() {
+    document.querySelector("#no").addEventListener("click", function () {
         document.querySelector("#delete").classList.add("hide");
     });
 }
