@@ -1,3 +1,7 @@
+@import url(./style.css);
+body {
+    background-image: url("../images/main-background.jpg");
+}
 .picture {
     position: absolute;
     aspect-ratio: 2/3;
@@ -13,7 +17,7 @@
 #spinner {
     margin: auto;
     aspect-ratio: 1/1;
-    height: 100vh;
+    height: 89vh;
 }
 
 #powerbutton {
@@ -23,7 +27,7 @@
     border: 2px solid darkred;
     border-radius: 50%;
     background-color: red;
-    top: calc(50% - 50px);
+    top: calc(50% - 30px);
     left: calc(50% - 50px);
     text-align: center;
     display: flex;
@@ -38,19 +42,21 @@
     background-color: darkred;
 }
 #powerScale{
+    height: 80%;
+    rotate: 180deg;
+    margin-top: 8%;
     position: fixed;
-    top: calc(50% - 100px);
+    top: 0;
     left: 10%;
     div {
         transition: 0.1s linear;
     }
-    height: 200px;
-    width: 50px;
+    width: 100px;
     border: 1px solid black;
 }
 #full {
     background-color: limegreen;
-    height: 50%;
+    height: 1%;
 }
 .hide {
     display: none;

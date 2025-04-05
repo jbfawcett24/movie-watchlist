@@ -46,13 +46,12 @@ function selectWinner()
         }   
     });
     const winner = document.getElementById(winningId);
-    winner.style.height = (window.innerHeight*0.99).toString() + "px";
-    winner.style.top = "0";
+    winner.style.height = (window.innerHeight*0.75).toString() + "px";
+    winner.style.top = "15%";
     //console.log(winner.offsetWidth);
-    winner.style.left = (window.innerWidth/2 - ((window.innerHeight*0.99)*(2/6)))+ "px";
+    winner.style.left = (window.innerWidth/2 - ((window.innerHeight*0.75)*(2/6)))+ "px";
     winner.style.zIndex = "1000";
-    document.querySelector(".winner").innerText = images[winningId].title;
-    document.querySelector(".winner").classList.remove("hide");
+    document.querySelector(".playlistName").innerText = images[winningId].title;
     //console.log(winningId);
     
 }
