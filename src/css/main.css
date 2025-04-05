@@ -5,7 +5,7 @@
 }
 
 header {
-    position: sticky;
+    position: fixed;
     top: 0;
     margin: 0;
     padding: 0;
@@ -78,6 +78,10 @@ body {
     z-index: 1;
 }
 
+#sideMenu svg {
+    margin-left: 35px;
+}
+
 #playlists {
     list-style: none;
     margin-top: 0px;
@@ -120,7 +124,7 @@ body {
 }
 
 #movies {
-    position: fixed;
+    position: absolute;
     width: calc(100% - 200px);
     top: 107px;
     margin-left: 200px;
@@ -129,14 +133,15 @@ body {
     text-align: center;
     flex-wrap: wrap;
     justify-content: center;
-    overflow: auto;
     z-index: 0;
     background-image: url(../images/main-background.jpg);
     background-position: bottom;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
     height: 100vh;
-    padding-top: 50px;
+    padding-top: 30px;
+    padding-bottom: 100px;
 }
 
 .movieContainer {
@@ -164,6 +169,7 @@ body {
     h3 {
         text-align: center;
         margin: 0;
+        padding-top: 10px;
         color: black;
         width: 100%;
         padding-left: 5px;
@@ -196,7 +202,7 @@ body {
     border: solid 2px black;
     border-radius: 5px;
     display: flex;
-    position: relative;
+    position: static;
     top: 13%;
     right: -15%;
     width: fit-content;
