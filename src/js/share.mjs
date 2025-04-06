@@ -1,10 +1,13 @@
+import LZString from "lz-string";
+
 let playlists = [];
 
 if(localStorage.getItem("playlists")) {
     playlists = JSON.parse(localStorage.getItem("playlists"));
 }
 const params = new URLSearchParams(window.location.search);
-let idString = params.get("movieID");
+let compressedString = params.get("movieID");
+let idString = LZString.decompressFromEncodedURIComponent(compressedString);
 console.log(idString);
 if(!playlists.some(playlist => playlist.name === params.get("name")))
 {

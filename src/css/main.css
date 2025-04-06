@@ -81,6 +81,11 @@ header {
     background-color: rgb(10, 50, 78);
     box-shadow: 1px 1px 6px rgba(1, 1, 1, 0.8);
     z-index: 1;
+    ul {
+        li {
+            position: relative;
+        }
+    }
 }
 
 #sideMenu svg {
@@ -283,7 +288,7 @@ header {
 .deletePlaylist {
     opacity: 0;
     position: absolute;
-    top: -0.5%;
+    top: -1%;
     right: 0;
     margin: 0;
     padding: 0;
@@ -292,4 +297,16 @@ header {
 
 .deletePlaylist:hover {
     opacity: 1;
+}
+
+#yes {
+    cursor: pointer;
+    background-color: #4792c1;
+    border-radius: 8px;
+}
+
+#no {
+    cursor: pointer;
+    background-color: #4792c1;
+    border-radius: 8px;
 }

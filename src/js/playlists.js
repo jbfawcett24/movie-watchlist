@@ -1,5 +1,6 @@
 import { movieTemplate, sideTemplate } from './templates.mjs';
 import { url, options } from "./api.mjs"
+import LZString from 'lz-string';
 let selectedPlaylist;
 let playlists = [];
 
@@ -137,7 +138,9 @@ function spinner() {
 function share() {
     const params = new URLSearchParams();
     params.append("name", selectedPlaylist.name);
-    params.append("movieID", selectedPlaylist.movieId.join(","));
+    const movieId = selectedPlaylist.movieId.join(",");
+    const compressedID = LZString.compressToEncodedURIComponent(movieId);
+    params.append("movieID", compressedID);
     console.log(window.location.host);
     const shareUrl = window.location.protocol + "//" + window.location.host + "/" + "share.html?" + params;
     document.querySelector("#shareLink").innerText = shareUrl;
