@@ -23,8 +23,13 @@ header {
     z-index: 1000;
 }
 
-body {
+#mainPage {
     margin: 0;
+    background-image: url(../images/main-background.webp);
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 .playlistName {
@@ -35,10 +40,10 @@ body {
     font-size: 35px;
     display: block;
     text-align: center;
-    padding-left: 25px;
-    padding-right: 25px;
-    padding-top: 5px;
-    height: var(--header-height);
+    padding-left: 20vh;
+    padding-right: 20vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
 }
 
 .searchBarHome {
@@ -134,14 +139,9 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     z-index: 0;
-    background-image: url(../images/main-background.jpg);
-    background-position: bottom;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    height: 100vh;
+    height: 105vh;
     padding-top: 30px;
-    padding-bottom: 100px;
+    padding-bottom: 2.5vh;
 }
 
 .movieContainer {
@@ -238,9 +238,9 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgb(131, 55, 55);
+    background-color: rgb(10, 50, 78);
     color: whitesmoke;
-    border: 1px solid maroon;
+    border: 1px solid rgb(7, 36, 56);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

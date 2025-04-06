@@ -4,6 +4,14 @@
     font-family: 'Roboto', sans-serif;
 }
 
+body {
+    background-image: url(../images/search-background.webp);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
 .movie {
     display: grid;
     grid-template-columns: 150px 1fr;
@@ -17,11 +25,14 @@
         grid-column: 1 / 2;
         grid-row: 1/3;
     }
+
     div {
         display: flex;
         align-items: flex-end;
         justify-content: space-between;
-        border-bottom: 1px solid lightgray;
+        border-bottom: 1px solid rgb(10, 38, 58);
+        background-color: rgba(245, 245, 245, 0.54);
+        color: rgb(10, 38, 58);
     }
 }
 
@@ -32,6 +43,13 @@
     margin: auto 0;
     padding-bottom: 10px;
 }
+
+.description {
+    color: rgb(218, 219, 219);
+    font-size: large;
+    font-weight: bold;
+}
+
 .searchBtn {
     display: flex;
     justify-content: center;
@@ -43,10 +61,12 @@
     background: white;
     cursor: pointer;
 }
+
 form {
     display: flex;
-    
+
 }
+
 .searchBtn svg {
     width: 70%;
     height: 70%;
@@ -57,13 +77,18 @@ form {
     padding-left: 10px;
 }
 
-input, button {
+input,
+button {
     height: 30px;
     padding: 0;
-    border: 1px solid #ccc; /* Ensure consistent borders */
-    font-size: 16px; /* Ensure matching font sizes */
-    box-sizing: border-box; /* Ensure padding/border are included in height */
-    vertical-align: middle; /* Align them properly */
+    border: 1px solid #ccc;
+    /* Ensure consistent borders */
+    font-size: 16px;
+    /* Ensure matching font sizes */
+    box-sizing: border-box;
+    /* Ensure padding/border are included in height */
+    vertical-align: middle;
+    /* Align them properly */
 }
 
 .addMovie {
@@ -77,13 +102,59 @@ input, button {
     line-height: 0.7;
     font-weight: lighter;
 }
+
 #playlistSelector {
-    position: absolute;
-    top: 0;
-    right: 0;
-    max-height: 0;
-    transition: max-height 0.5s ease-in-out;
+    flex-direction: column;
     border: 2px solid lightgray;
     width: fit-content;
     overflow: hidden;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.results {
+    position: absolute;
+    width: calc(100% - 200px);
+    align-items: flex-start;
+    padding-top: 3.5vh;
+    padding-left: 7vh;
+    padding-bottom: 3.5vh;
+}
+
+#addMovieForm {
+    width: 30vh;
+    height: fit-content;
+    display: block;
+    gap: 10px;
+}
+
+#addMovieForm button {
+    margin-top: 1vh;
+    width: max-content;
+    padding-left: 1vh;
+    padding-right: 1vh;
+    border-radius: 5px;
+}
+
+#addMovieForm label {
+    font-size: large;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-group button {
+    flex: 1;
+    margin: 0 5px;
+    font-size: 1em;
+}
+
+#playlistOptions {
+    justify-items: left;
+    padding-top: 1vh;
 }
