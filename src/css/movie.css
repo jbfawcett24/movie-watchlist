@@ -82,3 +82,11 @@ main {
         margin-bottom: 1%;
     }
 }
+
+@media screen and (max-width: 600px) {
+    #movieStuff {
+        grid-column: 1/4;
+        margin: 1%;
+        margin-bottom: 0;
+    }
+}
