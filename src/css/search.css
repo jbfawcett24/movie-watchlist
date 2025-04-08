@@ -6,7 +6,7 @@
 
 body {
     margin: 0;
-    background-image: url(../images/search-background.webp);
+    background-image: url(../images/main-background.webp);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -18,7 +18,7 @@ body {
     grid-template-columns: 150px 1fr;
     grid-template-rows: 50px 1fr;
     column-gap: 20px;
-    border: 2px solid lightgray;
+    border: 2px solid rgb(186, 186, 186);
     padding: 5px;
 
     img {
@@ -32,7 +32,7 @@ body {
         align-items: flex-end;
         justify-content: space-between;
         border-bottom: 1px solid rgb(10, 38, 58);
-        background-color: rgba(245, 245, 245, 0.54);
+        background-color: rgba(185, 184, 184, 0.54);
         color: rgb(10, 38, 58);
     }
 }
@@ -46,7 +46,7 @@ body {
 }
 
 .description {
-    color: rgb(218, 219, 219);
+    color: rgb(5, 6, 6);
     font-size: large;
     font-weight: bold;
 }
@@ -65,7 +65,6 @@ body {
 
 form {
     display: flex;
-
 }
 
 .searchBtn svg {
@@ -83,13 +82,9 @@ button {
     height: 30px;
     padding: 0;
     border: 1px solid #ccc;
-    /* Ensure consistent borders */
     font-size: 16px;
-    /* Ensure matching font sizes */
     box-sizing: border-box;
-    /* Ensure padding/border are included in height */
     vertical-align: middle;
-    /* Align them properly */
 }
 
 .addMovie {
@@ -102,6 +97,10 @@ button {
     height: auto;
     line-height: 0.7;
     font-weight: lighter;
+}
+
+.addMovie:hover{
+    font-weight:250; 
 }
 
 #playlistSelector {
@@ -158,4 +157,62 @@ button {
 #playlistOptions {
     justify-items: left;
     padding-top: 1vh;
+}
+
+@media (max-width: 760px){
+    .movie {
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid rgb(186, 186, 186);
+        margin-bottom: 15px;
+    }
+
+    .movie img {
+        width: 95%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .movie div {
+        flex-direction: column;
+        align-items: center;
+        justify-content:center;
+        width: 100%;
+        padding: 5px;
+    }
+
+    .title {
+        font-size: 1.8em;
+        text-align: center;
+    }
+
+    .description {
+        font-size: 1em;
+        font-weight: normal;
+        padding: 0 10px;
+        text-align: center;
+    }
+
+    #searchHeader {
+        background-size: cover;
+        background-position: center;
+        background-image: url('../images/popcorn.webp');
+    }
+
+    #searchHeader form {
+        margin-top: 16px;
+        align-items: center;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .results{
+        top: 40px;
+        position:relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 35px;
+    }
 }

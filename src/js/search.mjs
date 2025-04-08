@@ -48,8 +48,6 @@ function addToPlaylist(e) {
 function setPlaylistSelector(movieId) {
     const playlistSelector = document.querySelector("#playlistSelector");
     const optionsDiv = document.querySelector("#playlistOptions");
-
-    // Build radio buttons for each playlist
     const html = playlists.map((playlist, index) => `
         <div>
             <input type="radio" name="playlist" id="playlist${index}" value="${playlist.name}" ${index === 0 ? 'checked' : ''}>
@@ -58,7 +56,6 @@ function setPlaylistSelector(movieId) {
     `).join("");
     optionsDiv.innerHTML = html;
 
-    // Show modal
     playlistSelector.classList.remove("hide");
     const form = document.querySelector("#addMovieForm");
     form.onsubmit = (e) => {
@@ -74,12 +71,10 @@ function setPlaylistSelector(movieId) {
         playlistSelector.classList.add("hide");
     };
 
-    // Cancel button
     document.querySelector("#cancelAddButton").onclick = () => {
         playlistSelector.classList.add("hide");
     };
 
-    // Close (X)
     document.querySelector("#playlistSelector.close").onclick = () => {
         playlistSelector.classList.add("hide");
     };

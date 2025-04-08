@@ -12,11 +12,11 @@ header {
     box-sizing: border-box;
     width: 100%;
     box-shadow: 1px 1px 4px rgba(1, 1, 1, 0.8);
-    background-image: url('../images/movie-film.webp');
+    background-image: url('../images/movie-film1.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    display: flex;
+    display:flex;
     justify-content: space-between;
     align-items: center;
     height: 106px;
@@ -322,6 +322,17 @@ header {
         padding-bottom: 25px;
         gap: 10px;
         text-align: center;
+        background-size: cover;
+        background-position: center;
+        background-image: url('../images/popcorn.webp');
+    }
+
+    header img{
+        margin-bottom: -20px;
+    }
+
+    #Title{
+        margin-bottom: -10px;
     }
 
     #mainPage{
@@ -340,7 +351,7 @@ header {
 
     #sideMenu {
         position: fixed;
-        top: 12%;
+        top: 9%;
         left: -100%;
         width: 80%;
         height: 87%;
@@ -371,7 +382,7 @@ header {
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
-        top: 250px;
+        top: 215px;
     }
 
     .movieContainer {
