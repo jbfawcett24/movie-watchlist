@@ -1,8 +1,9 @@
 import {imageBaseUrl} from "./api.mjs"
+import noPoster from "../images/no-poster.png";
 export function movieTemplate(movie)
 {
     return `<section class="movieContainer" id="${movie.id}">
-                <img src="${movie.poster_path ? `${imageBaseUrl}/${movie.poster_path}` : "../images/no-poster.png"}" alt="${movie.title} Poster">
+                <img src="${movie.poster_path ? `${imageBaseUrl}/${movie.poster_path}` : noPoster}" alt="${movie.title} Poster">
                 <h3>${movie.title}</h3>
                 <svg fill="#000000" height="60px" width="30px" viewBox="0 0 25.283 25.283" xml:space="preserve" class="movieMenu">
                     <g>
@@ -45,7 +46,7 @@ export function watchTemplate(info)
 export function searchResultTemplate(movie)
 {
     return `<section class="movie" id="${movie.id}">
-            <img src="${movie.poster_path ? `${imageBaseUrl}/${movie.poster_path}` : "../images/no-poster.png"}" alt="${movie.title}">
+            <img src="${movie.poster_path ? `${imageBaseUrl}/${movie.poster_path}` : noPoster}" alt="${movie.title}">
             <div>
             <h3 class="title">${movie.title}</h3>
             <h4 class="addMovie">+</h4>
