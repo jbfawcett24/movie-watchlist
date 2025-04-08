@@ -144,9 +144,9 @@ header {
     flex-wrap: wrap;
     justify-content: center;
     z-index: 0;
-    height: 105vh;
     padding-top: 30px;
     padding-bottom: 2.5vh;
+    gap: 15px;
 }
 
 .movieContainer {
@@ -155,9 +155,9 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 1.5vh;
     min-height: 300px;
     width: 12vmax;
+    margin-bottom: 8px;
 
     a {
         text-decoration: none;
@@ -309,4 +309,108 @@ header {
     cursor: pointer;
     background-color: #4792c1;
     border-radius: 8px;
+}
+
+#menuToggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        height: auto;
+        padding-bottom: 25px;
+        gap: 10px;
+        text-align: center;
+    }
+
+    #mainPage{
+        flex-direction: column;
+        overflow-y: auto;
+    }
+
+    #logo {
+        max-width: 140px;
+    }
+
+    .playlistName {
+        padding: 1vh 5vw;
+        font-size: 24px;
+    }
+
+    #sideMenu {
+        position: fixed;
+        top: 12%;
+        left: -100%;
+        width: 80%;
+        height: 87%;
+        background-color: rgb(10, 50, 78);
+        z-index: 2000;
+        transition: left 0.3s ease-in-out;
+        padding-top: 20px; /* Optional for spacing */
+        box-shadow: 2px 0 5px rgba(0,0,0,0.4);
+        overflow-y: auto;
+    }
+
+    #sideMenu.show {
+        left: 0; /* slide in when toggled */
+    }
+
+    #playlists li {
+        width: 100%;
+        margin: 5px;
+        text-align: center;
+        font-size: 16px;
+    }
+
+    #movies {
+        position:absolute;
+        width: 100%;
+        margin-left: 0;
+        padding: 20px 10px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        top: 250px;
+    }
+
+    .movieContainer {
+        width: 45%;
+    }
+
+    .movieContainer img {
+        width: 100%;
+        height: auto;
+        object-fit:fill;
+        border-radius: 8px;
+    }
+
+    .movieContainer h3 {
+        font-size: 17px;
+    }
+
+    .searchBarHome {
+        padding-right: 0;
+    }
+
+    .modal {
+        width: 90%;
+    }
+
+    #menuToggle {
+        display: block;
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 2001; /* Ensure it's above the side menu */
+        font-size: 30px;
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+    }
+
+    .no-scroll {
+        overflow: hidden;
+    }
 }

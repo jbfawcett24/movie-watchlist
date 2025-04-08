@@ -3,6 +3,14 @@ import { url, options } from "./api.mjs"
 import LZString from 'lz-string';
 let selectedPlaylist;
 let playlists = [];
+const menuToggle = document.getElementById("menuToggle");
+const sideMenu = document.getElementById("sideMenu");
+
+menuToggle.addEventListener("click", () => {
+    const isOpen = sideMenu.classList.toggle("show");
+    document.body.classList.toggle("no-scroll", isOpen);
+});
+
 
 
 export function init() {
@@ -64,14 +72,37 @@ function setURL(e) {
 function setPage() {
     const sideMenu = document.querySelector('#sideMenu > ul');
     sideMenu.innerHTML = `<li><span id="add">+ Add New Playlist</span></li>`;
+
     if (playlists.length > 0) {
         playlists.forEach(playlist => {
+            const id = playlist.name.replaceAll(" ", "-");
             sideMenu.insertAdjacentHTML('afterbegin', sideTemplate(playlist.name));
-            document.querySelector(`#${playlist.name.replaceAll(" ", "-")}`).addEventListener("click", setMovies);
+
+            // Attach click event to each menu item
+            const menuItem = document.querySelector(`#${id}`);
+            menuItem.addEventListener("click", e => {
+                setMovies(e);
+
+                // Hide the sideMenu on mobile after clicking
+                if (window.innerWidth <= 768) {
+                    document.getElementById("sideMenu").classList.remove("show");
+                }
+            });
         });
     }
-    document.querySelector("#add").addEventListener("click", createPlaylist);
-    document.querySelectorAll(".deletePlaylist").forEach(button => button.addEventListener("click", deletePlaylist));
+
+    document.querySelector("#add").addEventListener("click", () => {
+        createPlaylist();
+
+        // Hide sideMenu on mobile after adding a playlist
+        if (window.innerWidth <= 768) {
+            document.getElementById("sideMenu").classList.remove("show");
+        }
+    });
+
+    document.querySelectorAll(".deletePlaylist").forEach(button =>
+        button.addEventListener("click", deletePlaylist)
+    );
 }
 
 function deleteMovie(e) {
