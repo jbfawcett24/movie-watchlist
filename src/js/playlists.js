@@ -17,6 +17,12 @@ export function init() {
     playlists = getPlaylists();
     localStorage.setItem("playlists", JSON.stringify(playlists));
     setPage();
+    setTimeout(() => {
+        const favoritesMenuItem = document.querySelector("#Favorites");
+        if (favoritesMenuItem) {
+            favoritesMenuItem.click(); // Triggers the click event listener already attached in setPage()
+        }
+    }, 0);
 }
 export function getPlaylists() {
     return localStorage.getItem("playlists") ? JSON.parse(localStorage.getItem("playlists")) : [{ name: "Favorites", movieId: [] }];
